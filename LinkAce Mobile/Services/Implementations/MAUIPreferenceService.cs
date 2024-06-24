@@ -4,6 +4,8 @@ internal class MAUIPreferenceService : IPreferenceService
 {
     public string TokenKey => "APIToken";
 
+    public string UrlKey => "ServerUrl";
+
     public async Task<string?> GetPreferenceString(string key)
     {
         string? result = null;

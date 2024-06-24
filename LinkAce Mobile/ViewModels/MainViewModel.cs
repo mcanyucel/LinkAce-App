@@ -15,7 +15,7 @@ internal sealed partial class MainViewModel(IPreferenceService preferenceService
 
     #endregion
     #region Lifecycle
-    [RelayCommand]
+     [RelayCommand]
     async Task Initialize()
     {
         string? token = await preferenceService.GetPreferenceString(preferenceService.TokenKey);
@@ -32,6 +32,6 @@ internal sealed partial class MainViewModel(IPreferenceService preferenceService
     }
     #endregion
     #region Fields
-    Logger logger = App.Current.Logger;
+    readonly Logger logger = App.Current.Logger;
     #endregion
 }

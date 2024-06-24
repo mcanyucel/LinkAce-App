@@ -18,4 +18,6 @@ internal interface IPreferenceService
     Task<bool> SetPreferenceString(string key, string value);
 
     public string TokenKey { get; }
+
+    public string UrlKey { get; }
 }
