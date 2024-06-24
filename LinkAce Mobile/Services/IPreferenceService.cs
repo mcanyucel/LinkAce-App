@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace LinkAce_Mobile.Services;
 
-namespace LinkAce_Mobile.Services
+internal interface IPreferenceService
 {
-    internal interface IPreferenceService
-    {
-    }
+    /// <summary>
+    /// Gets the string preference value for the given key.
+    /// </summary>
+    /// <param name="key"></param>
+    /// <returns>Null if no key exists or exceptions</returns>
+    Task<string?> GetPreferenceString(string key);
+
+    /// <summary>
+    /// Sets the string preference value for the given key.
+    /// </summary>
+    /// <param name="key"></param>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    Task<bool> SetPreferenceString(string key, string value);
 }
