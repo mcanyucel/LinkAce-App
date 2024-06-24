@@ -1,29 +1,53 @@
-﻿using Serilog;
+﻿using LinkAce_Mobile.Repositories;
+using LinkAce_Mobile.Repositories.Implementations;
+using LinkAce_Mobile.Services;
+using LinkAce_Mobile.Services.Implementations;
+using LinkAce_Mobile.ViewModels;
+using Serilog;
 using Serilog.Core;
 
-namespace LinkAce_Mobile
+namespace LinkAce_Mobile;
+
+public partial class App : Application
 {
-    public partial class App : Application
+
+    public static new App Current => Application.Current as App ?? throw new InvalidOperationException("Application.Current is null");
+
+    public Logger Logger => logger;
+
+    public IServiceProvider ServiceProvider { get; init; }
+
+
+
+    public App()
     {
+        InitializeComponent();
 
-        public static new App Current => Application.Current as App ?? throw new InvalidOperationException("Application.Current is null");
+        logger = new LoggerConfiguration()
+           .MinimumLevel.Debug()
+           .WriteTo.Console()
+           .CreateLogger();
 
-        public Logger Logger => logger;
-        
+        ServiceProvider = ConfigureServices();
 
-
-        public App()
-        {
-            InitializeComponent();
-
-             logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .WriteTo.Console()
-                .CreateLogger();
-
-            MainPage = new AppShell();
-        }
-
-        readonly Logger logger;
+        MainPage = new AppShell();
     }
+
+    private ServiceProvider ConfigureServices()
+    {
+        var services = new ServiceCollection();
+
+        // Singletons
+        services.AddSingleton<MainViewModel>();
+        services.AddSingleton<IPreferenceService, MAUIPreferenceService>();
+        services.AddSingleton<ILinkRepository, LinkAceRepository>();
+        services.AddSingleton<PreferenceViewModel>();
+
+        // Transients
+        services.AddTransient<DetailsViewModel>();
+
+        return services.BuildServiceProvider();
+    }
+
+    readonly Logger logger;
 }

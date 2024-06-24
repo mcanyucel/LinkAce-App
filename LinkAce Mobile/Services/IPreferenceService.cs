@@ -16,4 +16,6 @@ internal interface IPreferenceService
     /// <param name="value"></param>
     /// <returns></returns>
     Task<bool> SetPreferenceString(string key, string value);
+
+    public string TokenKey { get; }
 }
