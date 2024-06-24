@@ -1,10 +1,13 @@
-﻿namespace LinkAce_Mobile
+﻿using LinkAce_Mobile.Pages;
+
+namespace LinkAce_Mobile;
+
+public partial class AppShell : Shell
 {
-    public partial class AppShell : Shell
+    public AppShell()
     {
-        public AppShell()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+
+        Routing.RegisterRoute("PreferencesPage", typeof(PreferencesPage));
     }
 }

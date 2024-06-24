@@ -1,12 +1,69 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:LinkAce_Mobile.ViewModels"
+             x:DataType="vm:PreferenceViewModel"
              x:Class="LinkAce_Mobile.Pages.PreferencesPage"
-             Title="PreferencesPage">
+             Title="Preferences">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Label
+            Text="Server Settings"
+            Margin="8,0"
+            Style="{StaticResource Headline}"
+            HorizontalOptions="Start"
+            SemanticProperties.HeadingLevel="Level1" />
+
+        <Label
+            Text="Server URL"
+            Margin="8, 8, 0, 0"
+            Style="{StaticResource Body}"
+            HorizontalOptions="Start"
+            SemanticProperties.HeadingLevel="Level2" />
+
+        <Entry
+            Text="{Binding ServerUrl}"
+            Margin="8, 0"
+            Placeholder="https://linkace.example.com"
+            ReturnType="Next"
+            ClearButtonVisibility="WhileEditing"
+            Keyboard="Url"
+            HorizontalOptions="Fill"
+            PlaceholderColor="{DynamicResource SecondaryTextColor}"
+            TextColor="{DynamicResource PrimaryTextColor}" />
+
+        <Label
+            Text="API Token"
+            Margin="8, 8, 8, 0"
+            Style="{StaticResource Body}"
+            HorizontalOptions="Start"
+            SemanticProperties.HeadingLevel="Level2" />
+
+        <Entry
+            Margin="8, 0, 8, 0"
+            Text="{Binding Token}"
+            Placeholder="API Token"
+            ReturnType="Done"
+            ClearButtonVisibility="WhileEditing"
+            HorizontalOptions="Fill"
+            PlaceholderColor="{DynamicResource SecondaryTextColor}"
+            TextColor="{DynamicResource PrimaryTextColor}" />
+
+        <Label
+            Text="How do I get an API token?"
+            Margin="8, 4, 8, 0"
+            TextColor="Blue"
+            TextDecorations="Underline"
+            FontAttributes="Italic">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding OpenAPILinkHelpCommand}" />
+            </Label.GestureRecognizers>
+        </Label>
+
+        <Button
+            Text="Save"
+            Command="{Binding SavePreferencesCommand}"
+            HorizontalOptions="Fill"
+            Margin="8, 20, 8, 0" />
+
     </VerticalStackLayout>
 </ContentPage>

@@ -11,9 +11,13 @@ internal sealed partial class MainViewModel(IPreferenceService preferenceService
     #region Properties
 
     [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(NavigateToPreferencesPageCommand))]  
     bool isBusy;
 
     #endregion
+
+    bool IsBusyCanExecute => !IsBusy;   
+
     #region Lifecycle
      [RelayCommand]
     async Task Initialize()
@@ -21,14 +25,23 @@ internal sealed partial class MainViewModel(IPreferenceService preferenceService
         string? token = await preferenceService.GetPreferenceString(preferenceService.TokenKey);
         if(token == null)
         {
-            logger.Warning("No token found, navigating to login page");
-            // Navigate to login page
+            await NavigateToPreferencesPage();
+            
         }
         else
         {
             logger.Information("Token found, navigating to main page");
             // Navigate to main page
         }
+    }
+    #endregion
+
+    #region Navigation
+
+    [RelayCommand(CanExecute = nameof(IsBusyCanExecute))]
+    async Task NavigateToPreferencesPage()
+    {
+        await Shell.Current.GoToAsync("PreferencesPage");
     }
     #endregion
     #region Fields

@@ -10,6 +10,13 @@
             EventName="Appearing"
             Command="{Binding InitializeCommand}" />
     </ContentPage.Behaviors>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Preferences"
+                     Order="Primary"
+                     Priority="0"
+                     Command="{Binding NavigateToPreferencesPageCommand}" />
+    </ContentPage.ToolbarItems>
     
     <ScrollView>
         <VerticalStackLayout
