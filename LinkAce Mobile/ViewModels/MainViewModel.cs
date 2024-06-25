@@ -14,7 +14,8 @@ internal sealed partial class MainViewModel(IPreferenceService preferenceService
     #region Properties
 
     [ObservableProperty]
-    [NotifyCanExecuteChangedFor(nameof(NavigateToPreferencesPageCommand))]  
+    [NotifyCanExecuteChangedFor(nameof(NavigateToPreferencesPageCommand))]
+    [NotifyCanExecuteChangedFor(nameof(RefreshLinksCommand))]
     bool isBusy;
 
     [ObservableProperty]
@@ -28,30 +29,23 @@ internal sealed partial class MainViewModel(IPreferenceService preferenceService
      [RelayCommand]
     async Task Initialize()
     {
-        IsBusy = true;
         string? token = await preferenceService.GetPreferenceString(preferenceService.TokenKey);
         if(token == null)
         {
-            IsBusy = false;
             await NavigateToPreferencesPage();
         }
         else
         {
+            IsBusy = true;
             try
             {
                 var linkList = await linkRepository.GetAllLinks();
 
                 Links = new(linkList);
-
-                foreach (var link in Links)
-                {
-                    Debug.WriteLine(link.Title);
-                }
             }
             catch (HttpRequestException ex)
             {
-
-               logger.Error(ex, "Error while fetching links");
+                logger.Error(ex, "Error while fetching links");
                 Debug.WriteLine(ex);
             }
             finally
@@ -61,6 +55,27 @@ internal sealed partial class MainViewModel(IPreferenceService preferenceService
         }
     }
     #endregion
+
+    [RelayCommand(CanExecute = nameof(IsBusyCanExecute))]
+    async Task RefreshLinks()
+    {
+        IsBusy = true;
+        try
+        {
+            var linkList = await linkRepository.GetAllLinks();
+
+            Links = new(linkList);
+        }
+        catch (HttpRequestException ex)
+        {
+            logger.Error(ex, "Error while fetching links");
+            Debug.WriteLine(ex);
+        }
+        finally
+        {
+            IsBusy = false;
+        }
+    }
 
     #region Navigation
 
