@@ -6,6 +6,7 @@
              xmlns:models="clr-namespace:LinkAce_Mobile.Models"
              xmlns:converters="clr-namespace:LinkAce_Mobile.Converters"
              x:DataType="vm:MainViewModel"
+             Title="LinkAce"
              x:Class="LinkAce_Mobile.MainPage">
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior
@@ -16,14 +17,17 @@
     <ContentPage.ToolbarItems>
 
         <ToolbarItem Text="Search"
-                        IconImageSource="search.png"
-                        Order="Primary"
-                        Priority="1" />
+                     
+                     IconImageSource="search.png"
+                     Command="{Binding SearchLinksCommand}"
+                     Order="Primary"
+                     Priority="1" />
 
         <ToolbarItem Text="Add New"
-                        IconImageSource="add.png"
-                        Order="Primary"
-                        Priority="0" />
+                     IconImageSource="add.png"
+                     Command="{Binding AddNewLinkCommand}"
+                     Order="Primary"
+                     Priority="0" />
 
     </ContentPage.ToolbarItems>
 

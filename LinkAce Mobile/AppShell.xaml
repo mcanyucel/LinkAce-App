@@ -17,10 +17,25 @@
                 Route="home" />
     </FlyoutItem>
 
+    <FlyoutItem Title="Tags"
+                FlyoutIcon="tag.png">
+        <ShellContent ContentTemplate="{DataTemplate pages:TagsPage}"
+                Route="TagsPage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Lists"
+                FlyoutIcon="list.png">
+        <ShellContent ContentTemplate="{DataTemplate pages:ListsPage}"
+                Route="ListsPage" />
+    </FlyoutItem>
+
+    
     <FlyoutItem Title="Preferences" 
                 FlyoutIcon="preferences_dark.png">
         <ShellContent ContentTemplate="{DataTemplate pages:PreferencesPage}"
                 Route="PreferencesPage" />
     </FlyoutItem>
+    
+    
 
 </Shell>

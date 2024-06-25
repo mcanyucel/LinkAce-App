@@ -98,8 +98,10 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\add.png" />
 	  <None Remove="Resources\Images\home_dark.png" />
+	  <None Remove="Resources\Images\list.png" />
 	  <None Remove="Resources\Images\preferences.png" />
 	  <None Remove="Resources\Images\search.png" />
+	  <None Remove="Resources\Images\tag.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -115,7 +117,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\ListsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\PreferencesPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\TagsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

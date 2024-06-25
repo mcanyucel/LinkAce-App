@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LinkAce_Mobile.Models;
 using LinkAce_Mobile.Repositories;
@@ -16,6 +18,8 @@ internal sealed partial class MainViewModel(IPreferenceService preferenceService
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(NavigateToPreferencesPageCommand))]
     [NotifyCanExecuteChangedFor(nameof(RefreshLinksCommand))]
+    [NotifyCanExecuteChangedFor(nameof(AddNewLinkCommand))]
+    [NotifyCanExecuteChangedFor(nameof(SearchLinksCommand))]
     bool isBusy;
 
     [ObservableProperty]
@@ -77,12 +81,39 @@ internal sealed partial class MainViewModel(IPreferenceService preferenceService
         }
     }
 
+    [RelayCommand(CanExecute = nameof(IsBusyCanExecute))]
+    async Task AddNewLink()
+    {
+        SnackbarOptions snackbarOptions = new()
+        {
+            BackgroundColor = Colors.Red,
+            TextColor = Colors.White,
+            CornerRadius = new(10),
+            ActionButtonTextColor = Colors.White
+        };
+
+        await Snackbar.Make("Not implemented yet", visualOptions: snackbarOptions).Show();
+    }
+
+    [RelayCommand(CanExecute = nameof(IsBusyCanExecute))]
+    async Task SearchLinks()
+    {
+
+       SnackbarOptions snackbarOptions = new()
+        {
+            BackgroundColor = Colors.Red,
+            TextColor = Colors.White,
+            CornerRadius = new(10),
+            ActionButtonTextColor = Colors.White
+        };
+
+        await Snackbar.Make("Not implemented yet", visualOptions: snackbarOptions).Show();
+    }
+
     #region Navigation
 
     [RelayCommand(CanExecute = nameof(IsBusyCanExecute))]
     async Task NavigateToPreferencesPage() => await Shell.Current.GoToAsync("PreferencesPage");
-
-    
 
     #endregion
 
