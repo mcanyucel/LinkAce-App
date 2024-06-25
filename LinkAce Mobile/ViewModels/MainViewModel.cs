@@ -26,7 +26,6 @@ internal sealed partial class MainViewModel(IPreferenceService preferenceService
         if(token == null)
         {
             await NavigateToPreferencesPage();
-            
         }
         else
         {
@@ -39,11 +38,11 @@ internal sealed partial class MainViewModel(IPreferenceService preferenceService
     #region Navigation
 
     [RelayCommand(CanExecute = nameof(IsBusyCanExecute))]
-    async Task NavigateToPreferencesPage()
-    {
-        await Shell.Current.GoToAsync("PreferencesPage");
-    }
+    async Task NavigateToPreferencesPage() => await Shell.Current.GoToAsync("PreferencesPage");
+
     #endregion
+
+
     #region Fields
     readonly Logger logger = App.Current.Logger;
     #endregion

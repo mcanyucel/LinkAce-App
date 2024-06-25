@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:LinkAce_Mobile.ViewModels"
              x:DataType="vm:PreferenceViewModel"
-             x:Class="LinkAce_Mobile.Pages.PreferencesPage"
-             Title="Preferences">
+             x:Class="LinkAce_Mobile.Pages.PreferencesPage">
     <VerticalStackLayout>
         <Label
             Text="Server Settings"

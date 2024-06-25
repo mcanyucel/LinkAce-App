@@ -15,7 +15,9 @@
         <ToolbarItem Text="Preferences"
                      Order="Primary"
                      Priority="0"
-                     Command="{Binding NavigateToPreferencesPageCommand}" />
+                     StyleClass=""
+                     Command="{Binding NavigateToPreferencesPageCommand}">
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
     
     <ScrollView>

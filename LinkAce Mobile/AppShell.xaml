@@ -5,8 +5,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:LinkAce_Mobile"
     xmlns:pages="clr-namespace:LinkAce_Mobile.Pages"
+    Shell.BackgroundColor="MediumPurple"
+    Shell.TitleColor="White"
+    
     Shell.FlyoutBehavior="Disabled"
-    Shell.BackgroundColor="LightPink"
     Title="LinkAce_Mobile">
 
     <ShellContent
@@ -15,7 +17,7 @@
         Route="MainPage" />
 
     <ShellContent
-
+        Title="Preferences"
         ContentTemplate="{DataTemplate pages:PreferencesPage}"
         Route="PreferencesPage" />
 
