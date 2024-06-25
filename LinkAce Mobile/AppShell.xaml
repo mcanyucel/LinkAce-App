@@ -8,17 +8,19 @@
     Shell.BackgroundColor="MediumPurple"
     Shell.TitleColor="White"
     Shell.ForegroundColor="White"
-    Shell.FlyoutBehavior="Disabled"
     Title="LinkAce_Mobile">
 
-    <ShellContent
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Title="LinkAce"
-        Route="MainPage" />
+    <FlyoutItem Title="Home"
+                FlyoutIcon="home_dark.png">
 
-    <ShellContent
-        Title="Preferences"
-        ContentTemplate="{DataTemplate pages:PreferencesPage}"
-        Route="PreferencesPage" />
+        <ShellContent ContentTemplate="{DataTemplate local:MainPage}"
+                Route="home" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Preferences" 
+                FlyoutIcon="preferences_dark.png">
+        <ShellContent ContentTemplate="{DataTemplate pages:PreferencesPage}"
+                Route="PreferencesPage" />
+    </FlyoutItem>
 
 </Shell>
