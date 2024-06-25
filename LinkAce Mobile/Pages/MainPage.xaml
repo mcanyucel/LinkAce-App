@@ -17,19 +17,25 @@
         <ToolbarItem Text="Preferences"
                      IconImageSource="preferences.png"
                      Order="Primary"
-                     Priority="1"
+                     Priority="2"
                      Command="{Binding NavigateToPreferencesPageCommand}" />
+
+        <ToolbarItem Text="Search"
+                        IconImageSource="search.png"
+                        Order="Primary"
+                        Priority="1" />
 
         <ToolbarItem Text="Add New"
                         IconImageSource="add.png"
                         Order="Primary"
                         Priority="0" />
-        
+
     </ContentPage.ToolbarItems>
 
     <ContentPage.Resources>
         <converters:TagsToStringConverter x:Key="TagsToStringConverter" />
     </ContentPage.Resources>
+
 
     <RefreshView IsRefreshing="{Binding IsBusy}"
                  Padding="0,2,0,0"
@@ -75,7 +81,5 @@
         </CollectionView>
 
     </RefreshView>
-
-
 
 </ContentPage>
