@@ -7,7 +7,7 @@ namespace LinkAce_Mobile.Converters
     {
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
-            if (value is IEnumerable<LinkAceTag> tags)
+            if (value is List<LinkAceTag> tags)
             {
                 return string.Join(", ", tags.Select(t => t.Name));
             }

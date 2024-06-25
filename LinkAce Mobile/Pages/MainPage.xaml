@@ -69,10 +69,6 @@
                                 <Label Text="{Binding Description}"
                                        Margin="0,4,0,0"
                                        LineBreakMode="TailTruncation" />
-                                <Label Text="{Binding Tags, Converter={StaticResource TagsToStringConverter}}"
-                                       FontAttributes="Italic"
-                                       Margin="0,4,0,0"
-                                       TextColor="Gray" />
                             </VerticalStackLayout>
                         </Grid>
                     </Frame>
