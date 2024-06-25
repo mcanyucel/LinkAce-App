@@ -4,9 +4,9 @@ namespace LinkAce_Mobile.Models;
 
 internal sealed record LinkAceLink(
     [property: JsonPropertyName("id")]
-    string Id,
+    int Id,
     [property: JsonPropertyName("user_id")]
-    string UserId,
+    int UserId,
     [property: JsonPropertyName("title")]
     string Title,
     [property: JsonPropertyName("url")]
@@ -15,6 +15,8 @@ internal sealed record LinkAceLink(
     string Description,
     [property: JsonPropertyName("icon")]
     string Icon,
+    [property: JsonPropertyName("thumbnail")]
+    string Thumbnail,
     [property: JsonPropertyName("created_at")]
     DateTime CreatedAt,
     [property: JsonPropertyName("updated_at")]

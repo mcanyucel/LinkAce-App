@@ -17,6 +17,8 @@ internal interface IPreferenceService
     /// <returns></returns>
     Task<bool> SetPreferenceString(string key, string value);
 
+    string? GetPreferenceStringSync(string key);
+
     public string TokenKey { get; }
 
     public string UrlKey { get; }

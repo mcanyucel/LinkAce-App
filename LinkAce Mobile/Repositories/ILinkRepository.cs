@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LinkAce_Mobile.Models;
 
-namespace LinkAce_Mobile.Repositories
+namespace LinkAce_Mobile.Repositories;
+
+internal interface ILinkRepository
 {
-    internal interface ILinkRepository
-    {
-    }
+    Task<IEnumerable<LinkAceLink>> GetAllLinks();
 }

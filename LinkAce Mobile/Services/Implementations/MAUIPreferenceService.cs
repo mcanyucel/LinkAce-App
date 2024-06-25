@@ -28,6 +28,23 @@ internal class MAUIPreferenceService : IPreferenceService
         return result;
     }
 
+    public string? GetPreferenceStringSync(string key)
+    {
+        string? result = null;
+        if (!string.IsNullOrEmpty(key))
+        {
+            try
+            {
+                result = Preferences.Get(key, null);
+            }
+            catch (Exception e)
+            {
+                App.Current.Logger.Error(e, "Error while getting preference string");
+            }
+        }
+        return result;
+    }
+
     public async Task<bool> SetPreferenceString(string key, string value)
     {
         bool result = false;

@@ -40,8 +40,9 @@ public partial class App : Application
         // Singletons
         services.AddSingleton<MainViewModel>();
         services.AddSingleton<IPreferenceService, MAUIPreferenceService>();
-        services.AddSingleton<ILinkRepository, LinkAceRepository>();
         services.AddSingleton<PreferenceViewModel>();
+        // for now inject here as we do not support other backends - later refactor to use a factory
+        services.AddSingleton<ILinkRepository, LinkAceRepository>();
 
         // Transients
         services.AddTransient<DetailsViewModel>();

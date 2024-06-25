@@ -1,8 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using LinkAce_Mobile.Models;
 using LinkAce_Mobile.Repositories;
 using LinkAce_Mobile.Services;
 using Serilog.Core;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace LinkAce_Mobile.ViewModels;
 
@@ -14,6 +17,9 @@ internal sealed partial class MainViewModel(IPreferenceService preferenceService
     [NotifyCanExecuteChangedFor(nameof(NavigateToPreferencesPageCommand))]  
     bool isBusy;
 
+    [ObservableProperty]
+    ObservableCollection<LinkAceLink> links = [];
+
     #endregion
 
     bool IsBusyCanExecute => !IsBusy;   
@@ -22,15 +28,36 @@ internal sealed partial class MainViewModel(IPreferenceService preferenceService
      [RelayCommand]
     async Task Initialize()
     {
+        IsBusy = true;
         string? token = await preferenceService.GetPreferenceString(preferenceService.TokenKey);
         if(token == null)
         {
+            IsBusy = false;
             await NavigateToPreferencesPage();
         }
         else
         {
-            logger.Information("Token found, navigating to main page");
-            // Navigate to main page
+            try
+            {
+                var linkList = await linkRepository.GetAllLinks();
+
+                Links = new(linkList);
+
+                foreach (var link in Links)
+                {
+                    Debug.WriteLine(link.Title);
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+
+               logger.Error(ex, "Error while fetching links");
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
     }
     #endregion
