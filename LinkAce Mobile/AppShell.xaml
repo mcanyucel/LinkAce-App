@@ -7,7 +7,7 @@
     xmlns:pages="clr-namespace:LinkAce_Mobile.Pages"
     Shell.BackgroundColor="MediumPurple"
     Shell.TitleColor="White"
-    
+    Shell.ForegroundColor="White"
     Shell.FlyoutBehavior="Disabled"
     Title="LinkAce_Mobile">
 

@@ -15,22 +15,25 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Preferences"
+                     IconImageSource="preferences.png"
                      Order="Primary"
-                     Priority="0"
-                     StyleClass=""
-                     Command="{Binding NavigateToPreferencesPageCommand}">
-        </ToolbarItem>
+                     Priority="1"
+                     Command="{Binding NavigateToPreferencesPageCommand}" />
+
+        <ToolbarItem Text="Add New"
+                        IconImageSource="add.png"
+                        Order="Primary"
+                        Priority="0" />
+        
     </ContentPage.ToolbarItems>
 
     <ContentPage.Resources>
         <converters:TagsToStringConverter x:Key="TagsToStringConverter" />
     </ContentPage.Resources>
 
-
-
-
     <RefreshView IsRefreshing="{Binding IsBusy}"
-                     Command="{Binding RefreshLinksCommand}">
+                 Padding="0,2,0,0"
+                 Command="{Binding RefreshLinksCommand}">
         <CollectionView ItemsSource="{Binding Links}">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" />
@@ -38,29 +41,31 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:LinkAceLink">
                     <Frame Padding="10,6,10,6"
-                           Margin="2, 4"
+                           Margin="2"
                            HasShadow="True"
                            BorderColor="LightGray">
 
-                        <Grid RowDefinitions="*"
+                        <Grid RowDefinitions="Auto"
                               ColumnDefinitions="Auto, *"      
                               ColumnSpacing="8">
 
                             <Image Source="{Binding Thumbnail}"
                                    Aspect="AspectFill"
                                    VerticalOptions="Center"
-                                   HeightRequest="64"
+                                   HeightRequest="80"
                                    Grid.Column="0"
-                                   WidthRequest="64"/>
+                                   WidthRequest="80"/>
 
                             <VerticalStackLayout Grid.Column="1"
                                                  VerticalOptions="Center">
                                 <Label Text="{Binding Title}"
                                        FontAttributes="Bold" />
                                 <Label Text="{Binding Description}"
+                                       Margin="0,4,0,0"
                                        LineBreakMode="TailTruncation" />
                                 <Label Text="{Binding Tags, Converter={StaticResource TagsToStringConverter}}"
                                        FontAttributes="Italic"
+                                       Margin="0,4,0,0"
                                        TextColor="Gray" />
                             </VerticalStackLayout>
                         </Grid>

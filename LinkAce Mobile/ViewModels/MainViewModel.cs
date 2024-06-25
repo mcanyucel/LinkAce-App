@@ -82,6 +82,8 @@ internal sealed partial class MainViewModel(IPreferenceService preferenceService
     [RelayCommand(CanExecute = nameof(IsBusyCanExecute))]
     async Task NavigateToPreferencesPage() => await Shell.Current.GoToAsync("PreferencesPage");
 
+    
+
     #endregion
 
 
