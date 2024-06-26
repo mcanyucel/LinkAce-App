@@ -20,6 +20,7 @@ namespace LinkAce_Mobile.Repositories.Implementations
 
             if (string.IsNullOrEmpty(baseUrl) || string.IsNullOrEmpty(token))
             {
+                // FIXME This causes the app to crash on first launch, because the user has not yet set the preferences
                 logger.Error("BaseUrl or Token is empty, cannot create repository");
                 throw new Exception("BaseUrl or Token is empty, cannot create repository");
             }
